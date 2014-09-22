@@ -6,7 +6,7 @@ require 'csv'
 # Login credentials
 gitlabUsername = ARGV[0]
 gitlabPassword = ARGV[1]
-gitlabApiRoot = ARGV[2]
+gitlabRoot = ARGV[2]
 userFile = ARGV[3]
 
 # Check for existing file
@@ -18,7 +18,7 @@ end
 # Import data into the gitlab service for ACM
 
 # Get the session private token so we can make calls
-sessionUrl = URI.parse("#{gitlabApiRoot}/session")
+sessionUrl = URI.parse("#{gitlabRoot}/api/v3/session")
 sessionRes = Net::HTTP.post_form(sessionUrl, {
 	"login" => gitlabUsername,
 	"password" => gitlabPassword
@@ -43,7 +43,7 @@ CSV.foreach(userFile) do |row|
 	puts email
 	puts password
 	# Call the API
-	userUrl = URI.parse("#{gitlabApiRoot}/users")
+	userUrl = URI.parse("#{gitlabRoot}/api/v3/users")
 	http = Net::HTTP::new(userUrl.host, userUrl.port)
 	request = Net::HTTP::Post.new(userUrl.request_uri)
 	request.set_form_data({
