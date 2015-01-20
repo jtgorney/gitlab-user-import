@@ -14,6 +14,6 @@ ruby import.rb <Gitlab Admin Username> <Gitlab Admin Password> <Gitlab Site URL>
 
 Example:
 
-?> ruby import.rb admin pr3ttypr1nce$s@ https://gitlab.domain.tld import.csv
+?> ruby import.rb admin mypassword https://gitlab.domain.tld import.csv
 
 All users are assigned the password gitlabuser.
